@@ -1,3 +1,4 @@
 out
 logo.png:Zone.Identifier
 connection_string.txt
+.env
