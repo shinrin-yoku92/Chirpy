@@ -1,8 +1,6 @@
 package main
 
 import (
-	"encoding/json"
-	"log"
 	"net/http"
 )
 
@@ -23,10 +21,6 @@ func (cfg *apiConfig) handlerListChirps(w http.ResponseWriter, r *http.Request) 
 			UserID:    c.UserID,
 		})
 	}
-
-	log.Printf("type=%T len=%d", respChirps, len(respChirps))
-	b, _ := json.Marshal(respChirps)
-	log.Printf("json=%s", b)
 
 	respondWithJSON(w, http.StatusOK, respChirps)
 }
