@@ -8,7 +8,7 @@ import (
 
 func (cfg *apiConfig) handlerGetChirpByID(w http.ResponseWriter, r *http.Request) {
 	// Extract the chirp ID from the URL path
-	idStr := r.PathValue("id")
+	idStr := r.PathValue("chirpID")
 	chirpID, err := uuid.Parse(idStr)
 	if err != nil {
 		respondWithError(w, http.StatusBadRequest, "Invalid chirp ID", err)

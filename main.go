@@ -12,6 +12,12 @@ import (
 	"github.com/shinrin_yoku92/Chirpy/internal/db"
 )
 
+type apiConfig struct {
+	fileserverHits atomic.Int32
+	db             *db.Queries
+	platform       string
+}
+
 func main() {
 	const port = "8080"
 	const filepathroot = "."
@@ -62,10 +68,11 @@ func main() {
 	mux.HandleFunc("POST /admin/reset", cfg.handlerReset)
 
 	mux.HandleFunc("POST /api/users", cfg.handlerCreateUser)
+	mux.HandleFunc("POST /api/login", cfg.handlerUserLogin)
 
 	mux.HandleFunc("POST /api/chirps", cfg.handlerCreateChirp)
 	mux.HandleFunc("GET /api/chirps", cfg.handlerListChirps)
-	mux.HandleFunc("GET /api/chirps/{id}", cfg.handlerGetChirpByID)
+	mux.HandleFunc("GET /api/chirps/{chirpID}", cfg.handlerGetChirpByID)
 
 	srv := &http.Server{
 		Addr:    ":" + port,
