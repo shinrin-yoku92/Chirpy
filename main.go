@@ -16,6 +16,7 @@ type apiConfig struct {
 	fileserverHits atomic.Int32
 	db             *db.Queries
 	platform       string
+	secretKey      string
 }
 
 func main() {
@@ -37,6 +38,11 @@ func main() {
 		log.Fatal("PLATFORM environment variable is not set")
 	}
 
+	secretKey := os.Getenv("SECRET_KEY")
+	if secretKey == "" {
+		log.Fatal("SECRET_KEY environment variable is not set")
+	}
+
 	dbConn, err := sql.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatalf("Error connecting to the database: %v", err)
@@ -48,6 +54,7 @@ func main() {
 		fileserverHits: atomic.Int32{},
 		db:             dbQueries,
 		platform:       platform,
+		secretKey:      secretKey,
 	}
 
 	mux := http.NewServeMux()
@@ -73,6 +80,9 @@ func main() {
 	mux.HandleFunc("POST /api/chirps", cfg.handlerCreateChirp)
 	mux.HandleFunc("GET /api/chirps", cfg.handlerListChirps)
 	mux.HandleFunc("GET /api/chirps/{chirpID}", cfg.handlerGetChirpByID)
+
+	mux.HandleFunc("POST /api/refresh", cfg.handlerTokenRefresh)
+	mux.HandleFunc("POST /api/revoke", cfg.handlerRevoke)
 
 	srv := &http.Server{
 		Addr:    ":" + port,
