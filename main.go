@@ -17,6 +17,7 @@ type apiConfig struct {
 	db             *db.Queries
 	platform       string
 	secretKey      string
+	polkaKey       string
 }
 
 func main() {
@@ -43,6 +44,11 @@ func main() {
 		log.Fatal("SECRET_KEY environment variable is not set")
 	}
 
+	polkaKey := os.Getenv("POLKA_KEY")
+	if polkaKey == "" {
+		log.Fatal("POLKA_KEY environment variable is not set")
+	}
+
 	dbConn, err := sql.Open("postgres", dbURL)
 	if err != nil {
 		log.Fatalf("Error connecting to the database: %v", err)
@@ -55,6 +61,7 @@ func main() {
 		db:             dbQueries,
 		platform:       platform,
 		secretKey:      secretKey,
+		polkaKey:       polkaKey,
 	}
 
 	mux := http.NewServeMux()

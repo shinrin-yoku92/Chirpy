@@ -7,6 +7,7 @@ import (
 	"net/http"
 
 	"github.com/google/uuid"
+	"github.com/shinrin_yoku92/Chirpy/internal/auth"
 )
 
 func (cfg *apiConfig) handlerUpgradeChirpyRed(w http.ResponseWriter, r *http.Request) {
@@ -27,6 +28,12 @@ func (cfg *apiConfig) handlerUpgradeChirpyRed(w http.ResponseWriter, r *http.Req
 
 	if req.Event != "user.upgraded" {
 		respondWithError(w, http.StatusNoContent, "unsupported event type", nil)
+		return
+	}
+
+	_, err = auth.GetAPIKey(r.Header)
+	if err != nil {
+		respondWithError(w, http.StatusUnauthorized, "invalid API key", err)
 		return
 	}
 
