@@ -73,13 +73,16 @@ Server defaults to port: 8080
 ------------------------------------------------------------
 ## 📡 API Reference
 
-POST    /users/create       Register a user  
-POST    /users/login        Authenticate + tokens  
-POST    /chirps             Create a chirp  
-GET     /chirps             List all chirps  
-GET     /chirps/{id}        Get a specific chirp  
-DELETE  /chirps/{id}        Remove a chirp  
-POST    /token/refresh      Refresh JWT token  
+| Method | Endpoint         | Description               |
+|--------|------------------|---------------------------|
+| POST   | /users/create    | Register a user           |
+| POST   | /users/login     | Authenticate + tokens     |
+| POST   | /chirps          | Create a chirp            |
+| GET    | /chirps          | List all chirps           |
+| GET    | /chirps/{id}     | Get a specific chirp      |
+| DELETE | /chirps/{id}     | Remove a chirp            |
+| POST   | /token/refresh   | Refresh JWT token         |
+
 
 ------------------------------------------------------------
 ## 🔧 Configuration
