@@ -8,7 +8,6 @@
 ![Go Version](https://img.shields.io/badge/Go-1.x-blue?logo=go)
 ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 ![Build](https://img.shields.io/badge/Build-Passing-brightgreen)
-![PRs Welcome](https://img.shields.io/badge/PRs-Welcome-purple)
 ![Status](https://img.shields.io/badge/Project-Active-success)
 
 ------------------------------------------------------------
@@ -37,13 +36,15 @@ Technology stack:
 • SQL + sqlc (database & typed queries)  
 • HTTP REST API  
 
-Directory Layout (simplified):
+## 📁 Directory Layout (Simplified)
 
-assets/               Static assets  
-internal/             Internal Go modules  
-sql/                  SQL schema + sqlc queries  
-cmd/                  Application entrypoints  
-main.go               Program start  
+| Path      | Description                 |
+|-----------|-----------------------------|
+| assets/   | Static assets               |
+| internal/ | Internal Go modules         |
+| sql/      | SQL schema + sqlc queries   |
+| cmd/      | Application entrypoints     |
+| main.go   | Program start               | 
 
 ------------------------------------------------------------
 ## ⚙️ Getting Started
@@ -89,9 +90,12 @@ Server defaults to port: 8080
 
 Environment variables:
 
-DB_DSN        Database connection string  
-JWT_SECRET    Secret key for signing tokens  
-PORT          Application port  
+|**Variable**| **Description**
+|------------|---------------------------------------|
+| DB_URL     | Database connection string            |
+| PLATFORM   | Enables Dev platform for server reset |  
+| SECRET_KEY | Secret key for signing tokens         |
+| POLKA_KEY  | API key for webhook                   |
 
 ------------------------------------------------------------
 ## 🧪 Testing
@@ -110,24 +114,8 @@ Chirpy can be deployed easily via:
 • GitHub Actions CI/CD  
 
 ------------------------------------------------------------
-## 🤝 Contributing
-
-Want to improve Chirpy? Great!
-
-1. Fork the repo  
-2. Create a feature branch  
-3. Implement changes  
-4. Submit a pull request  
-
-All contributions are welcome.
-
-------------------------------------------------------------
 ## 📄 License
 
 This project is licensed under the MIT License.
 
 ------------------------------------------------------------
-## 🙏 Acknowledgements
-
-• Inspired by minimalist microblogging platforms  
-• Built on the strength of the Go open-source community  
